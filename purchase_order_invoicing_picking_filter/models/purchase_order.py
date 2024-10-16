@@ -130,13 +130,13 @@ class PurchaseOrder(models.Model):
 
             if outgoing_invoice_vals_list:
                 for invoice in outgoing_invoice_vals_list:
-                    invoice["move_type"] = "out_refund"
+                    invoice["move_type"] = "out_invoice"
                 moves += (
                     self.env["account.move"].sudo().create(outgoing_invoice_vals_list)
                 )
             if incoming_invoice_vals_list:
                 for invoice in incoming_invoice_vals_list:
-                    invoice["move_type"] = "out_invoice"
+                    invoice["move_type"] = "in_invoice"
                 moves += (
                     self.env["account.move"].sudo().create(incoming_invoice_vals_list)
                 )
